@@ -1,0 +1,118 @@
+@import "compass/css3";
+
+*,
+*:after,
+*:before
+{
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+$cell-size:20px;
+$grid-width:($cell-size * 10) + 2px;
+$grid-height:($cell-size * 20) + 2px;
+$preview-size:($cell-size * 5) + 2px;
+
+/* needs to correspond to piece.js */
+$colours:
+    ('white',#f0f0f0),
+    ('blue',#0099ff),
+    ('orange',rgb(255, 115, 0)),
+    ('yellow',#ddff45),
+    ('red',#ff1900),
+    ('grey',#14cedb),
+    ('black',#34495e),
+    ('purple',#8026a4),
+    ('white',#ecf0f1),
+    ('pink',#f53dff),
+    ('green',rgb(18, 198, 78) 188, 112);
+
+@each $colour, $hex in $colours
+{
+    .#{$colour}
+    {
+        background-color:$hex; 
+        border:1px solid darken($hex,20);
+        box-shadow:inset 0 0 1px 1px lighten($hex,20);
+    }
+}
+
+body { background-color:#0d0d0d; }
+
+.contador
+{
+    width:$grid-width;
+    height:20px;
+    margin:20px auto;
+    font-size:10px;
+    text-align:center;
+    color:#d4d4d4;
+    opacity:0;
+}
+
+.puntuación,
+.nivel
+{
+    position:fixed;
+    left:463px;
+    z-index:1;
+    width:$grid-width;
+    height:40px;
+    margin:10px auto;
+    font-size:20px;
+    text-align:center;
+    font-family: Consolas, monaco, monospace;
+    color:#f0f0f0;
+}
+
+.puntuación
+{
+    top:150px;
+    font-weight:bold;
+    &:before
+    {
+        content:'score: ';
+    }
+}
+
+.nivel
+{
+    top:175px;
+    &:before
+    {
+        content:'level: ';
+    }
+}
+
+.red
+{
+    width:$grid-width;
+    height:$grid-height;
+    position:fixed;
+    top:50px;
+    left:300px;
+    border:1px solid darken(#f0f0f0,20);
+    box-shadow:0 0 200px 0 #000;
+}
+
+
+.avance-celdas
+{
+    width:$preview-size;
+    height:$preview-size;
+    position:fixed;
+    top:50px;
+    left:520px;
+    border:1px solid darken(#f0f0f0,20);
+}
+
+.celda
+{
+    width:$cell-size;
+    height:$cell-size;
+    display:inline-block;
+    float:left;
+}
